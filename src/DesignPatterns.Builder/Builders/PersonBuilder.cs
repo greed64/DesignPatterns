@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Builder.Models;
+using System;
 
 namespace DesignPatterns.Builder.Builders
 {
@@ -29,7 +30,26 @@ namespace DesignPatterns.Builder.Builders
 
         public IPerson Build()
         {
+            Validate();
             return _person;
+        }
+
+        private void Validate() {
+            if (string.IsNullOrEmpty(_person.FirstName)) {
+                throw new ArgumentException("FirstName");
+            }
+            if (string.IsNullOrEmpty(_person.LastName))
+            {
+                throw new ArgumentException("LastName");
+            }
+            if (_person.Age < 0 || _person.Age > 120)
+            {
+                throw new ArgumentException("Age");
+            }
+            if (_person.Address is null)
+            {
+                throw new ArgumentException("Address");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DesignPatterns.Builder.Models;
+using System;
 
 namespace DesignPatterns.Builder.Builders
 {
@@ -16,7 +17,20 @@ namespace DesignPatterns.Builder.Builders
 
         public IAddress Build()
         {
+            Validate();
             return _address;
+        }
+
+        private void Validate()
+        {
+            if (string.IsNullOrEmpty(_address.FirstLine))
+            {
+                throw new ArgumentException("FirstLine");
+            }
+            if (string.IsNullOrEmpty(_address.SeccondLine))
+            {
+                throw new ArgumentException("SeccondLine");
+            }
         }
     }
 }
