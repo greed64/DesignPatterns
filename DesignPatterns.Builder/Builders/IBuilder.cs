@@ -2,8 +2,8 @@
 
 namespace DesignPatterns.Builder.Builders
 {
-    public interface IBuilder
+    public interface IBuilder<TModel> where TModel : IModel
     {
-        IModel Build();
+        TModel Build();
     }
 }

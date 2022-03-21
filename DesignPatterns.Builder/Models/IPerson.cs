@@ -1,6 +1,6 @@
 ﻿namespace DesignPatterns.Builder.Models
 {
-    interface IPerson : IModel
+    public interface IPerson : IModel
     {
         string FirstName { get; set; }
         string LastName { get; set; }

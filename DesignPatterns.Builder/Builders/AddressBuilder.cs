@@ -14,7 +14,7 @@ namespace DesignPatterns.Builder.Builders
             return this;
         }
 
-        public IModel Build()
+        public IAddress Build()
         {
             return _address;
         }
