@@ -3,3 +3,5 @@
 ################################################################################
 
 /.vs/DesignPatterns
+/DesignPatterns.Builder/bin/Debug/net5.0
+/DesignPatterns.Builder/obj

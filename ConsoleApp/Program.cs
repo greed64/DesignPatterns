@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesignPatterns.Builder.Builders;
+using System;
 
 namespace ConsoleApp
 {
@@ -6,7 +7,10 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var addressBuilder = new AddressBuilder();
+            var address = addressBuilder.SetAddress("aaa", "bbb").Build();
+            
+
         }
     }
 }
