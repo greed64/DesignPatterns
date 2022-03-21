@@ -1,26 +1,30 @@
-﻿using DesignPatterns.Builder.Builders;
+﻿using ConsoleApp.Config;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            Builders();
+            await CreateHostBuilder(args).Build().RunAsync();
         }
 
-        static void Builders()
-        {
-            var addressBuilder = new AddressBuilder();
-            var address = addressBuilder
-                .SetAddress("aaa", "bbb")
-                .Build();
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+           Host.CreateDefaultBuilder(args)
+           .ConfigureAppConfiguration((context, config) =>
+           {
+               config.AddCommandLine(args);
+           })
+           .ConfigureServices(services =>
+           {
+               services
+               .AddHostedService<Startup>()
+               .AddConsoleAppIoC();
+           });
 
-            var personBuilder = new PersonBuilder(addressBuilder);
-            var person = personBuilder
-                .SetPersonalData("John", "Snow", 28)
-                .SetAddress("aa", "bb")
-                .Build();
-        }
     }
 }
